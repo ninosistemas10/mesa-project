@@ -17,7 +17,7 @@ import (
 
 func InitRoutes(e *echo.Echo, dbPool *pgxpool.Pool) {
 	// Ruta raíz
-	e.GET("/", func(c echo.Context) error {
+	e.Match([]string{"GET", "HEAD"}, "/", func(c echo.Context) error { // ✅ Permite ambos métodos
 		return c.String(http.StatusOK, "¡Servidor en funcionamiento! ✅")
 	})
 

@@ -27,7 +27,7 @@ func buildHandler(dbPool *pgxpool.Pool) handler {
 
 // publicRoutes handle the routes that not requires a validation of any kind to be use
 func publicRoutes(e *echo.Echo, h handler) {
-	route := e.Group("/ninosistemas/public/login/")
+	route := e.Group("/ninosistemas/public/login")
 
 	route.POST("", h.Login)
 }
