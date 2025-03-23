@@ -11,9 +11,9 @@ import (
 func NewRouter(e *echo.Echo, dbPool *pgxpool.Pool) {
 	h := builHandler(dbPool)
 
-	authMiddlleware := middle.New()
+	authMiddleware := middle.New()
 
-	adminRoutes(e, h, authMiddlleware.IsValid, authMiddlleware.IsAdmin)
+	adminRoutes(e, h, authMiddleware.IsValid, authMiddleware.IsAdmin)
 	publicRoutes(e, h)
 }
 
@@ -24,7 +24,7 @@ func builHandler(dbPool *pgxpool.Pool) handler {
 }
 
 func adminRoutes(e *echo.Echo, h handler, middlewares ...echo.MiddlewareFunc) {
-	route := e.Group("ninosistemas/admin/mesa", middlewares...)
+	route := e.Group("ninosistemas/admin/mesa/", middlewares...)
 
 	route.POST("", h.Create)
 	route.PUT("/:id", h.Update)
@@ -35,7 +35,7 @@ func adminRoutes(e *echo.Echo, h handler, middlewares ...echo.MiddlewareFunc) {
 }
 
 func publicRoutes(e *echo.Echo, h handler) {
-	route := e.Group("ninosistemas/public/mesa")
+	route := e.Group("ninosistemas/public/mesa/")
 
 	route.POST("", h.Create)
 	route.GET("", h.GetAll)

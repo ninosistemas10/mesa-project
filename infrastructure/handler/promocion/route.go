@@ -23,7 +23,7 @@ func buildHandler(dbPool *pgxpool.Pool) handler {
 }
 
 func adminRoutes(e *echo.Echo, h handler, middlewares ...echo.MiddlewareFunc) {
-	route := e.Group("ninosistemas/admin/promocion", middlewares...)
+	route := e.Group("ninosistemas/admin/promocion/", middlewares...)
 
 	route.POST("", h.Create)
 	route.PUT("/:id", h.Update)
@@ -34,7 +34,7 @@ func adminRoutes(e *echo.Echo, h handler, middlewares ...echo.MiddlewareFunc) {
 }
 
 func publicRoutes(e *echo.Echo, h handler) {
-	route := e.Group("ninosistemas/public/promocion")
+	route := e.Group("ninosistemas/public/promocion/")
 	route.PUT("/imagen/:id", h.UpdateImage)
 	route.POST("", h.Create)
 	route.GET("", h.GetAll)
