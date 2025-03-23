@@ -16,26 +16,20 @@ import (
 )
 
 func InitRoutes(e *echo.Echo, dbPool *pgxpool.Pool) {
+	// Ruta raíz
+	e.GET("/", func(c echo.Context) error {
+		return c.String(http.StatusOK, "¡Servidor en funcionamiento! ✅")
+	})
+
+	// Health check
 	health(e)
 
-	// A
-	// B
-	// C
+	// Resto de rutas
 	category.NewRouter(e, dbPool)
-	// I
-
-
-	// L
 	login.NewRouter(e, dbPool)
-
-	//M
 	mesa.NewRouter(e, dbPool)
-
-	// P
 	producto.NewRouter(e, dbPool)
 	promocion.NewRouter(e, dbPool)
-
-	// U
 	user.NewRouter(e, dbPool)
 }
 
