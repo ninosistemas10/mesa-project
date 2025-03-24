@@ -18,7 +18,7 @@ func loadEnv() error {
 }
 
 func validateEnvironments() error {
-	if strings.TrimSpace(os.Getenv("PORT")) == "" {
+	if strings.TrimSpace(os.Getenv("SERVER_PORT")) == "" {
 		return errors.New("the SERVER_PORT ")
 	}
 	if strings.TrimSpace(os.Getenv("ALLOWED_ORIGINS")) == "" {
