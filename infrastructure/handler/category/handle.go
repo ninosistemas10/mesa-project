@@ -103,7 +103,7 @@ func (h handler) UpdateImage(c echo.Context) error {
 	}
 
 	// 🔹 Construir la URL de acceso a la imagen
-	imageURL := fmt.Sprintf("http://localhost:8081/categorias/%s", filename)
+	imageURL := fmt.Sprintf("https://delivery-caffe.onrender.com/categorias/%s", filename)
 
 	// 🔹 Llamar al caso de uso para actualizar la imagen en la base de datos
 	if err := h.useCase.UpdateImage(ID, imageURL); err != nil {
